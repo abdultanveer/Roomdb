@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.next.roomdb.background.DownloadAsyncTask;
@@ -71,7 +72,8 @@ EditText wordEditText;
                 commitDataDb();
                 break;
             case R.id.buttonasync:
-                DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask();
+                ProgressBar mProgressBar = findViewById(R.id.progressBar);
+                DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask(mProgressBar);
                 downloadAsyncTask.execute("https://urlfromimagetobedownloaded.com");
                 break;
         }
