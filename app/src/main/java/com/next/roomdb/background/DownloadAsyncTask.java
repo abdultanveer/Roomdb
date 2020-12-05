@@ -22,11 +22,14 @@ public class DownloadAsyncTask extends AsyncTask<String,Integer,Void> {//urlstri
     @Override//i'll download a file
     protected Void doInBackground(String... strings) {
         Log.i(TAG,"starting download from url"+ strings[0]);
-        publishProgress(50);
 
 
         try {
-            Thread.sleep(900);
+            for(int i=1;i<20;i++) {
+                publishProgress(i*5);
+
+                Thread.sleep(200);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
