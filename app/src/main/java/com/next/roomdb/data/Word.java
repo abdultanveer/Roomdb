@@ -12,6 +12,7 @@ public class Word {
     @PrimaryKey (autoGenerate=true)
    public int id;
 
+    @NonNull
     @ColumnInfo(name = "word")
    public String word;
 

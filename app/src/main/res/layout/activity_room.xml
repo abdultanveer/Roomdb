@@ -21,10 +21,11 @@
         android:id="@+id/buttonCommit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="59dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="47dp"
         android:onClick="dbHandler"
         android:text="dbcommit"
+        app:layout_constraintEnd_toStartOf="@+id/buttonasync"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextWord" />
 
@@ -37,4 +38,16 @@
         android:text="name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCommit" />
+
+    <Button
+        android:id="@+id/buttonasync"
+        android:onClick="dbHandler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="5dp"
+        android:text="async start"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonCommit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonCommit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

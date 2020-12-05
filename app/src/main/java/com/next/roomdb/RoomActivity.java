@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.next.roomdb.background.DownloadAsyncTask;
 import com.next.roomdb.data.Word;
 import com.next.roomdb.data.source.WordDao;
 import com.next.roomdb.data.source.WordViewModel;
@@ -40,7 +41,13 @@ EditText wordEditText;
         mWordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
                 //new ViewModelProvider( ).get(WordViewModel.class);
 
-
+        mWordViewModel.getAllWords().observe(this,words1 -> {
+            if(words1.size()!=0) {
+                int size = words1.size();
+                Word word = words1.get(size - 1);
+                mNameTextView.setText(word.getWord());
+            }
+        });
 
 
     }
@@ -49,9 +56,7 @@ EditText wordEditText;
     @Override
     protected void onStart() {
         super.onStart();
-        mWordViewModel.getAllWords().observe(this,words1 -> {
-            mNameTextView.setText(words1.get(2).word);
-        });
+
 
 
 
@@ -59,8 +64,17 @@ EditText wordEditText;
 
     }
 
+
     public void dbHandler(View view) {
-        commitDataDb();
+        switch (view.getId()){
+            case R.id.buttonCommit:
+                commitDataDb();
+                break;
+            case R.id.buttonasync:
+                DownloadAsyncTask downloadAsyncTask = new DownloadAsyncTask();
+                downloadAsyncTask.execute("https://urlfromimagetobedownloaded.com");
+                break;
+        }
     }
 
     private void commitDataDb() {
