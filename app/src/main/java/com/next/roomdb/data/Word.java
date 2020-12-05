@@ -10,10 +10,10 @@ public class Word {
 
     @NonNull
     @PrimaryKey (autoGenerate=true)
-    int id;
+   public int id;
 
     @ColumnInfo(name = "word")
-    String word;
+   public String word;
 
     public Word(String word) {
         this.word = word;

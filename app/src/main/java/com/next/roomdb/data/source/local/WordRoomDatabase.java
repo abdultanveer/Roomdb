@@ -3,19 +3,24 @@ package com.next.roomdb.data.source.local;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.room.Database;
 import androidx.room.DatabaseConfiguration;
 import androidx.room.InvalidationTracker;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
+import com.next.roomdb.data.Word;
 import com.next.roomdb.data.source.WordDao;
 
+
+@Database(entities = {Word.class}, version = 1)
 public abstract class WordRoomDatabase extends RoomDatabase {
 
     public abstract WordDao wordDao();
 
     private static WordRoomDatabase INSTANCE;
+
 
     public static WordRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -26,7 +31,6 @@ public abstract class WordRoomDatabase extends RoomDatabase {
                             // Wipes and rebuilds instead of migrating
                             // if no Migration object.
                             // Migration is not part of this practical.
-                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

@@ -35,6 +35,7 @@ EditText wordEditText;
         Word word = new Word(data);
         new insertAsyncTask(mWordDao).execute(word);
        // new insertAsyncTask(mWordDao).execute(new Word(wordEditText.getText().toString()));
+        wordEditText.setText("");
 
     }
 
