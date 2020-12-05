@@ -41,9 +41,7 @@ EditText wordEditText;
                 //new ViewModelProvider( ).get(WordViewModel.class);
 
 
-        mWordViewModel.getAllWords().observe(this,words1 -> {
-            mNameTextView.setText(words1.get(2).word);
-        });
+
 
     }
 
@@ -51,15 +49,10 @@ EditText wordEditText;
     @Override
     protected void onStart() {
         super.onStart();
+        mWordViewModel.getAllWords().observe(this,words1 -> {
+            mNameTextView.setText(words1.get(2).word);
+        });
 
-        final Observer<String> nameObserver =
-                new Observer<String>() {
-                    @Override
-                    public void onChanged(@Nullable final String newName) {
-                        // Update the UI, in this case, a TextView.
-                        mNameTextView.setText(newName);
-                    }
-                };
 
 
        // mWordViewModel.observe(this, nameObserver);

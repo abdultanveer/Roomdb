@@ -19,10 +19,10 @@ public class WordRepository {
     WordRepository(Application application) {
         WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
         mWordDao = db.wordDao();
-        mAllWords = mWordDao.getAllWords();
     }
 
     LiveData<List<Word>> getAllWords() {
+        mAllWords = mWordDao.getAllWords();
         return mAllWords;
     }
 
