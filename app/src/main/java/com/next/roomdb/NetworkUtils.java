@@ -29,7 +29,7 @@ public class NetworkUtils {
         String bookJSONString = null;//website content
         try {
             URL requestURL = new URL(builtURI.toString());
-
+            Log.i(LOG_TAG,"webservice url= "+requestURL.toString());
             urlConnection = (HttpURLConnection) requestURL.openConnection();
             urlConnection.setRequestMethod("GET");  //GET POST PUT REQUEST DELETE
             urlConnection.connect();
