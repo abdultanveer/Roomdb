@@ -2,11 +2,16 @@ package com.next.roomdb;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -87,6 +92,40 @@ EditText wordEditText;
         //new insertAsyncTask(mWordDao).execute(word);
        // new insertAsyncTask(mWordDao).execute(new Word(wordEditText.getText().toString()));
         wordEditText.setText("");
+
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "promotions";
+                    //getString(R.string.channel_name);
+            String description = "this is to show ads";
+                    //getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("promos", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void showNotification(View view) {
+        createNotificationChannel();
+        NotificationManager mNotifyManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+        int NOTIFICATION_ID = 123;
+         NotificationCompat.Builder mNotifyBuilder;
+
+        mNotifyBuilder = new NotificationCompat.Builder(this,"promos")
+                .setContentTitle("You've been notified!")
+                .setContentText("This is your notification text.")
+                .setSmallIcon(R.drawable.ic_launcher_foreground);
+        Notification myNotification = mNotifyBuilder.build();
+        mNotifyManager.notify(NOTIFICATION_ID,  myNotification);
 
     }
 
