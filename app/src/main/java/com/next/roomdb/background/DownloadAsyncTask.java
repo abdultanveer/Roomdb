@@ -1,11 +1,12 @@
 package com.next.roomdb.background;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-public class DownloadAsyncTask extends AsyncTask<String,Integer,Void> {//urlstring, progressint, resultimage
+public class DownloadAsyncTask extends AsyncTask<String,Integer, Bitmap> {//urlstring, progressint, resultimage
     public static String TAG = DownloadAsyncTask.class.getSimpleName();
     ProgressBar progressBar;
 
@@ -20,7 +21,7 @@ public class DownloadAsyncTask extends AsyncTask<String,Integer,Void> {//urlstri
     }
 
     @Override//i'll download a file
-    protected Void doInBackground(String... strings) {
+    protected Bitmap doInBackground(String... strings) {
         Log.i(TAG,"starting download from url"+ strings[0]);
 
 
@@ -45,8 +46,8 @@ public class DownloadAsyncTask extends AsyncTask<String,Integer,Void> {//urlstri
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+    protected void onPostExecute(Bitmap bitmap) {
+        super.onPostExecute(bitmap);
         progressBar.setVisibility(View.INVISIBLE);
     }
 }
