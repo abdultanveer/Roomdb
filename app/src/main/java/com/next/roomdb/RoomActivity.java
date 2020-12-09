@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -127,6 +128,19 @@ EditText wordEditText;
         Notification myNotification = mNotifyBuilder.build();
         mNotifyManager.notify(NOTIFICATION_ID,  myNotification);
 
+    }
+
+    public void serviceHandler(View view) {
+        Intent serviceIntent = new Intent(RoomActivity.this,MusicService.class);
+
+        switch (view.getId()){
+            case R.id.buttonstartserv:
+                startService(serviceIntent);
+                break;
+            case R.id.buttonstopserv:
+                stopService(serviceIntent);
+                break;
+        }
     }
 
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {

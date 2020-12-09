@@ -36,7 +36,7 @@ public class SmsReceiver extends BroadcastReceiver {
 
                     // Show alert
                     int duration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(context, "senderNum: "+ senderNum + ", message: " + message, duration);
+                    Toast toast = Toast.makeText(context, "volvo no: "+ senderNum + ", sms msg: " + message, duration);
                     toast.show();
 
                 } // end for loop
