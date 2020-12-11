@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomdb">
         <service
-            android:name=".MusicService"></service>
+            android:name=".AdditionService"></service>
+        <service android:name=".MusicService" />
 
         <receiver android:name=".SmsReceiver">
             <intent-filter>

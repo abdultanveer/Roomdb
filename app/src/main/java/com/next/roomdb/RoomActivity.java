@@ -6,18 +6,24 @@ import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.Room;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.next.roomdb.background.DownloadAsyncTask;
 import com.next.roomdb.data.Word;
@@ -140,8 +146,28 @@ EditText wordEditText;
             case R.id.buttonstopserv:
                 stopService(serviceIntent);
                 break;
+            case R.id.button_bind:
+                Intent adIntent = new Intent(RoomActivity.this,AdditionService.class);
+                bindService(adIntent,connection, Service.BIND_AUTO_CREATE);//5
+                break;
         }
     }
+
+    AdditionService additionService;
+    ServiceConnection connection = new ServiceConnection() {//6
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            AdditionService.LocalBinder binder = (AdditionService.LocalBinder) service; //service is a binder returned fron onBind method of additionService class--7
+            additionService = binder.getService();
+           int res = additionService.add(10,20);
+            Toast.makeText(RoomActivity.this, "result ="+res, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     private static class insertAsyncTask extends AsyncTask<Word, Void, Void> {
         private WordDao mAsyncTaskDao;
