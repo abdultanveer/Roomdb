@@ -26,5 +26,6 @@ public class AdditionService extends Service {
 
     public int add(int a, int b){//3
         return a+b;
+       // stopSelf();
     }
 }

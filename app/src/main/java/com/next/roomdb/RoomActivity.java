@@ -156,8 +156,8 @@ EditText wordEditText;
     AdditionService additionService;
     ServiceConnection connection = new ServiceConnection() {//6
         @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            AdditionService.LocalBinder binder = (AdditionService.LocalBinder) service; //service is a binder returned fron onBind method of additionService class--7
+        public void onServiceConnected(ComponentName name, IBinder binderOnBind) {
+            AdditionService.LocalBinder binder = (AdditionService.LocalBinder) binderOnBind; //service is a binder returned fron onBind method of additionService class--7
             additionService = binder.getService();
            int res = additionService.add(10,20);
             Toast.makeText(RoomActivity.this, "result ="+res, Toast.LENGTH_SHORT).show();
