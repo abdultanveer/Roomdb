@@ -17,13 +17,21 @@ ListView contentListView;
         setContentView(R.layout.activity_content_provider);
         contentListView = findViewById(R.id.contentproviderlist);
 
+
+
         Uri uriSms = Uri.parse("content://sms/inbox");
-        Cursor dataCursor = getContentResolver().query(uriSms, null,null,null,null);
 
-        CursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,dataCursor,
-                new String[]{"body"},
-                new int[]{android.R.id.text1},0);
+        DbQueryTask dbQueryTask = new DbQueryTask(contentListView,this);
+        dbQueryTask.execute(uriSms);
+       /* Cursor dataCursor = getContentResolver().query(uriSms, null,null,null,null);
 
-        contentListView.setAdapter(adapter);
+        CursorAdapter adapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_2,                    //layout of each row
+                dataCursor,                                             //data
+                new String[]{"body","address"},                         //column names
+                new int[]{android.R.id.text1,android.R.id.text2},       //textview ids
+                0);
+
+        contentListView.setAdapter(adapter);*/
     }
 }
