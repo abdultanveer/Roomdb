@@ -1,12 +1,8 @@
-package com.next.roomdb;
+package com.next.roomdb.activites;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.room.Room;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -25,11 +21,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.next.roomdb.R;
 import com.next.roomdb.background.DownloadAsyncTask;
 import com.next.roomdb.data.Word;
 import com.next.roomdb.data.source.WordDao;
 import com.next.roomdb.data.source.WordViewModel;
 import com.next.roomdb.data.source.local.WordRoomDatabase;
+import com.next.roomdb.services.AdditionService;
+import com.next.roomdb.services.MusicService;
 
 import java.util.List;
 
@@ -137,7 +136,7 @@ EditText wordEditText;
     }
 
     public void serviceHandler(View view) {
-        Intent serviceIntent = new Intent(RoomActivity.this,MusicService.class);
+        Intent serviceIntent = new Intent(RoomActivity.this, MusicService.class);
 
         switch (view.getId()){
             case R.id.buttonstartserv:
@@ -147,7 +146,7 @@ EditText wordEditText;
                 stopService(serviceIntent);
                 break;
             case R.id.button_bind:
-                Intent adIntent = new Intent(RoomActivity.this,AdditionService.class);
+                Intent adIntent = new Intent(RoomActivity.this, AdditionService.class);
                 bindService(adIntent,connection, Service.BIND_AUTO_CREATE);//5
                 break;
         }

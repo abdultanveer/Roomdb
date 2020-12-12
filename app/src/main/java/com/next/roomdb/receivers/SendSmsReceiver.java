@@ -1,4 +1,4 @@
-package com.next.roomdb;
+package com.next.roomdb.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

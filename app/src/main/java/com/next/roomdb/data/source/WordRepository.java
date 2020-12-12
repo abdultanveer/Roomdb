@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.next.roomdb.RoomActivity;
 import com.next.roomdb.data.Word;
 import com.next.roomdb.data.source.local.WordRoomDatabase;
 

@@ -1,4 +1,4 @@
-package com.next.roomdb;
+package com.next.roomdb.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,7 +12,7 @@ public class AdditionService extends Service {
     private final IBinder binder = new LocalBinder(); // binder is for synchronous ipc--1
 
     public class LocalBinder extends Binder {//2
-        AdditionService getService() {
+      public  AdditionService getService() {
             // Return this instance of LocalService so clients can call public methods
             return AdditionService.this;
         }

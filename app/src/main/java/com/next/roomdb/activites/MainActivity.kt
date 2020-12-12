@@ -1,7 +1,8 @@
-package com.next.roomdb
+package com.next.roomdb.activites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.next.roomdb.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
